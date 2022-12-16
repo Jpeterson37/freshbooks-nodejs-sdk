@@ -374,7 +374,7 @@ export default class APIClient {
 				`${URL}`,
 				{},
 				Data,
-				'API PUT'
+				'API Delete'
 			),
     }
 
