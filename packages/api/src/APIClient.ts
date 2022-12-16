@@ -318,6 +318,66 @@ export default class APIClient {
 		}
 	}
 
+	public readonly API = {
+        /**
+         * API GET request
+         * @param {string} URL - API endpoint for the request.
+		 * @param {QueryBuilderType[]} queryBuilders QueryBuilder.
+         */
+        get: (URL: string, queryBuilders?: QueryBuilderType[] | undefined): Promise<Result<{response: Object;}>> => 
+			this.call(
+				'GET',
+				`${URL}${joinQueries(queryBuilders)}`,
+				{},
+				null, 
+				'API GET'
+			),
+
+		/**
+         * API POST request
+         * @param {string} URL API endpoint for the request.
+		 * @param {Object} Data API JSON request body.
+		 * @param {QueryBuilderType[]} queryBuilders QueryBuilder.
+         */
+		post: (URL: string, Data: {}, queryBuilders?: QueryBuilderType[] | undefined): Promise<Result<{response: Object;}>> => 
+			this.call(
+				'POST',
+				`${URL}${joinQueries(queryBuilders)}`,
+				{},
+				Data,
+				'API POST'
+			),
+	
+		/**
+		 * API PUT request
+		 * @param {string} URL API endpoint for the request.
+		 * @param {Object} Data API JSON request body.
+		 * @param {QueryBuilderType[]} queryBuilders QueryBuilder.
+		 */
+		put: (URL: string, Data: {}, queryBuilders?: QueryBuilderType[] | undefined): Promise<Result<{response: Object;}>> => 
+			this.call(
+				'PUT',
+				`${URL}${joinQueries(queryBuilders)}`,
+				{},
+				Data,
+				'API PUT'
+			),
+	
+		/**
+		 * API DELETE request
+		 * @param {string} URL API endpoint for the request.
+		 * @param {Object} Data API JSON request body.
+		 */
+		delete: (URL: string, Data?: {}): Promise<Result<{response: Object;}>> => 
+			this.call(
+				'DELETE',
+				`${URL}`,
+				{},
+				Data,
+				'API PUT'
+			),
+    }
+
 	public readonly users = {
 		/**
 		 * Get own identity user
